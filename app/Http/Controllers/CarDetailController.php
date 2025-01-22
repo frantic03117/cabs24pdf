@@ -37,25 +37,19 @@ class CarDetailController extends Controller
         $address = "";
         foreach ($infos['data'] as $item) {
             if ($item['title'] == 'Website') {
-
                 $website = $item['media_value'];
             }
             if ($item['title'] == 'Title') {
-
                 $title = $item['media_value'];
             }
             if ($item['title'] == 'Helpline') {
-
                 $helpline = $item['media_value'];
             }
             if ($item['title'] == 'Address') {
-
                 $address = $item['media_value'];
             }
         }
-
         $other_imgs = $oimages->json();
-
         $dets = [];
         $details = [];
         $carimages = [];
