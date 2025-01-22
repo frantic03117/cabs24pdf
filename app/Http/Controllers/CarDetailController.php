@@ -28,7 +28,31 @@ class CarDetailController extends Controller
 
         $filePath = str_replace('\\', '/', $logodata['data'][0]['file']);
         $logo =  'https://cabs24.co.in:7456/' . $filePath;
+        $infos = Http::withOptions([
+            'verify' => false
+        ])->get('https://cabs24.co.in:7456/api/v1/setting')->json();
+        $title = "";
+        $website = "";
+        $helpline = "";
+        $address = "";
+        foreach ($infos['data'] as $item) {
+            if ($item['title'] == 'Website') {
 
+                $website = $item['media_value'];
+            }
+            if ($item['title'] == 'Title') {
+
+                $title = $item['media_value'];
+            }
+            if ($item['title'] == 'Helpline') {
+
+                $helpline = $item['media_value'];
+            }
+            if ($item['title'] == 'Address') {
+
+                $address = $item['media_value'];
+            }
+        }
 
         $other_imgs = $oimages->json();
 
@@ -90,7 +114,7 @@ class CarDetailController extends Controller
         $details['registration_number'] = $data['data']['registration_number'];
         $details['doi'] = $data['data']['createdAt'];
 
-        $res = compact('details', 'carimages', 'rats', 'logo');
+        $res = compact('details', 'carimages', 'rats', 'logo', 'title', 'website', 'helpline', 'address');
 
         $context = stream_context_create([
             'ssl' => [

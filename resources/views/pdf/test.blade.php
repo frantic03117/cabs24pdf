@@ -391,15 +391,13 @@
                     </p>
                 </td>
                 <td style="width:75%">
-                    <h5>CAB-X (Cabs24 Private Limited)</h5>
+                    <h5>{{ $title }}</h5>
                     <p>
-                        126, 1st Floor,D Mall Rohini,
-                        Sector-10,Delhi- 110085,
-                        Near Rohini West Metro Station
+                        {{ $address }}
                     </p>
                     <p>
-                        <strong> Customer Care No. </strong> 1800-208-9595 | <strong> Website </strong> :
-                        www.carexpertindia.com
+                        <strong> Customer Care No. </strong> {{ $helpline }} | <strong> Website </strong> :
+                        {{ $website }}
                     </p>
                     <p>
 
