@@ -21,11 +21,9 @@ class CarDetailController extends Controller
         $oimages = Http::withOptions([
             'verify' => false,
         ])->get('https://admin.cabx.co.in:7433/api/v1/form/inspections/other-images/?id=' . $id);
-
         $logodata = Http::withOptions([
             'verify' => false
         ])->get('https://admin.cabx.co.in:7433/api/v1/setting?title=Logo')->json();
-
         $filePath = str_replace('\\', '/', $logodata['data'][0]['file']);
         $logo =  'https://admin.cabx.co.in:7433/' . $filePath;
         $infos = Http::withOptions([
@@ -53,12 +51,9 @@ class CarDetailController extends Controller
         $dets = [];
         $details = [];
         $carimages = [];
-
         $filteredImages = array_filter($data['data']['inspections'], function ($val) {
             return $val['key']['type'] === "image" && $val['key']['field'] !== "rc_image";
         });
-
-        // Sort the filtered images by step and order
         usort($filteredImages, function ($a, $b) {
             if ($a['step'] === $b['step']) {
 
@@ -81,7 +76,6 @@ class CarDetailController extends Controller
             }
         }
         foreach ($other_imgs['data'] as $k => $val) {
-
             $irr = [
                 'image' => $val['image'],
                 'name' => 'Other Image',
@@ -92,9 +86,7 @@ class CarDetailController extends Controller
             ];
             array_push($carimages, $irr);
         }
-
         $collection = collect($data['data']['inspections']);
-
         foreach ($collection as $col) {
             $key = $col['key']['field'];
             $item = $collection->firstWhere('key.field', $key);
@@ -107,9 +99,7 @@ class CarDetailController extends Controller
         $details['address'] = $data['data']['location']['address'];
         $details['registration_number'] = $data['data']['registration_number'];
         $details['doi'] = $data['data']['createdAt'];
-
         $res = compact('details', 'carimages', 'rats', 'logo', 'title', 'website', 'helpline', 'address');
-
         $context = stream_context_create([
             'ssl' => [
                 'verify_peer' => false,
