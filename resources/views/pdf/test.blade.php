@@ -483,7 +483,7 @@
                             <div style="width:100%;position:relative;">
                                 <div class="imgbox">
                                     <img class="mainimg"
-                                        src="{{ 'https://admin.cabx.co.in:7433/' . $details['front_photo'] }}"
+                                        src="{{ 'https://api.cabx.co.in/' . $details['front_photo'] }}"
                                         style="height:100%;object-fit:cover;" alt="Default Image">
                                     <div class="watermark">
                                         <div class="datetime">
@@ -825,7 +825,7 @@
 
                                         <div class="imgbox">
                                             <img class="mainimg"
-                                                src="{{ 'https://admin.cabx.co.in:7433/' . $cimage['image'] }}"
+                                                src="{{ 'https://api.cabx.co.in/' . $cimage['image'] }}"
                                                 alt="{{ $cimage['name'] }}">
                                             <div class="watermark">
                                                 <div class="datetime">

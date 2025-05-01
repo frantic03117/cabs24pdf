@@ -16,19 +16,19 @@ class CarDetailController extends Controller
     {
         $items = Http::withOptions([
             'verify' => false,
-        ])->get('https://admin.cabx.co.in:7433/api/v1/form/inspections/details/' . $id);
+        ])->get('https://api.cabx.co.in/api/v1/form/inspections/details/' . $id);
         $data = $items->json();
         $oimages = Http::withOptions([
             'verify' => false,
-        ])->get('https://admin.cabx.co.in:7433/api/v1/form/inspections/other-images/?id=' . $id);
+        ])->get('https://api.cabx.co.in/api/v1/form/inspections/other-images/?id=' . $id);
         $logodata = Http::withOptions([
             'verify' => false
-        ])->get('https://admin.cabx.co.in:7433/api/v1/setting?title=Logo')->json();
+        ])->get('https://api.cabx.co.in/api/v1/setting?title=Logo')->json();
         $filePath = str_replace('\\', '/', $logodata['data'][0]['file']);
-        $logo =  'https://admin.cabx.co.in:7433/' . $filePath;
+        $logo =  'https://api.cabx.co.in/' . $filePath;
         $infos = Http::withOptions([
             'verify' => false
-        ])->get('https://admin.cabx.co.in:7433/api/v1/setting')->json();
+        ])->get('https://api.cabx.co.in/api/v1/setting')->json();
         $title = "";
         $website = "";
         $helpline = "";
