@@ -67,6 +67,7 @@ class CarDetailController extends Controller
                 $irr = [
                     'image' => $val['string_value'],
                     'name' => $val['key']['name'],
+                    "store_at" => $val['store_at'],
                     'created_at' => Carbon::parse($val['createdAt'])
                         ->addHours(5)
                         ->addMinutes(30)
@@ -79,6 +80,7 @@ class CarDetailController extends Controller
             $irr = [
                 'image' => $val['image'],
                 'name' => 'Other Image',
+                "store_at" => $val?->store_at,
                 'created_at' => Carbon::parse($val['createdAt'])
                     ->addHours(5)
                     ->addMinutes(30)
@@ -106,6 +108,7 @@ class CarDetailController extends Controller
                 'verify_peer_name' => false,
             ]
         ]);
+        // return response()->json($res);
         // return view('pdf.test', $res);
         // die;
         $pdf = PDF::setOptions([
